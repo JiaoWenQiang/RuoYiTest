@@ -104,16 +104,16 @@ export default {
     }
   },
   created() {
-    this.getCode();
+    this.getCode(); //这是初始化获取验证码的方法
     this.getCookie();
   },
   methods: {
     getCode() {
-      getCodeImg().then(res => {
+      getCodeImg().then(res => { //回调函数
         this.captchaEnabled = res.captchaEnabled === undefined ? true : res.captchaEnabled;
         if (this.captchaEnabled) {
-          this.codeUrl = "data:image/gif;base64," + res.img;
-          this.loginForm.uuid = res.uuid;
+          this.codeUrl = "data:image/gif;base64," + res.img; //这是获取到的验证码，后端直接生成的base64格式的图片
+          this.loginForm.uuid = res.uuid; //保证key不重复，要区别每一个验证码答案
         }
       });
     },
